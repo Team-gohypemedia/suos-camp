@@ -19,9 +19,15 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
       };
     }
 
-    const databaseUrl =
-      process.env.DATABASE_URL ||
-      "postgresql://neondb_owner:npg_LkP8bjgNS5Bo@ep-withered-wildflower-b365o5es-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
+    const databaseUrl = process.env.DATABASE_URL;
+
+    if (!databaseUrl) {
+      console.error("DATABASE_URL environment variable is not defined.");
+      return {
+        success: false,
+        message: "Server configuration error. Please try again later.",
+      };
+    }
 
     const sql = neon(databaseUrl);
 
