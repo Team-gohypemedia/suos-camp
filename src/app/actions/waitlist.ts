@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { neon } from "@neondatabase/serverless";
 
 export type WaitlistResponse = {
   success: boolean;
@@ -19,12 +19,18 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
       };
     }
 
-    // Check if user is already registered
-    const existing = await prisma.waitlistUser.findUnique({
-      where: { email: trimmedEmail },
-    });
+    const databaseUrl =
+      process.env.DATABASE_URL ||
+      "postgresql://neondb_owner:npg_LkP8bjgNS5Bo@ep-withered-wildflower-b365o5es-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
 
-    if (existing) {
+    const sql = neon(databaseUrl);
+
+    // Check if email already exists
+    const existing = await sql`
+      SELECT id, email FROM waitlist_users WHERE email = ${trimmedEmail} LIMIT 1
+    `;
+
+    if (existing.length > 0) {
       return {
         success: true,
         alreadyJoined: true,
@@ -32,12 +38,14 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
       };
     }
 
-    // Insert new waitlist record
-    await prisma.waitlistUser.create({
-      data: {
-        email: trimmedEmail,
-      },
-    });
+    // Generate unique ID
+    const id = `wl_${Math.random().toString(36).substring(2, 11)}_${Date.now().toString(36)}`;
+
+    // Insert new waitlist record into PostgreSQL
+    await sql`
+      INSERT INTO waitlist_users (id, email, "createdAt", "updatedAt")
+      VALUES (${id}, ${trimmedEmail}, NOW(), NOW())
+    `;
 
     return {
       success: true,
