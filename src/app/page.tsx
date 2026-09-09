@@ -8,6 +8,7 @@ import { joinWaitlist } from "@/app/actions/waitlist";
 export default function Home() {
   const [email, setEmail] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "loading" | "success">("idle");
+  const [alreadyJoined, setAlreadyJoined] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,6 +24,7 @@ export default function Home() {
     try {
       const res = await joinWaitlist(email);
       if (res.success) {
+        setAlreadyJoined(!!res.alreadyJoined);
         setStatus("success");
       } else {
         setStatus("idle");
@@ -96,15 +98,20 @@ export default function Home() {
                   <Check className="size-3.5" />
                 </div>
                 <p className="font-sans text-xs font-normal text-white tracking-widest uppercase">
-                  You&apos;re on the list
+                  {alreadyJoined ? "Already on the list" : "You're on the list"}
                 </p>
                 <p className="font-sans text-[11px] text-neutral-400 font-light">
-                  We&apos;ve reserved your spot for <span className="text-white">{email}</span>.
+                  {alreadyJoined ? (
+                    <>This email is already registered on our waitlist.</>
+                  ) : (
+                    <>We&apos;ve reserved your spot for <span className="text-white">{email}</span>.</>
+                  )}
                 </p>
                 <button
                   onClick={() => {
                     setStatus("idle");
                     setEmail("");
+                    setAlreadyJoined(false);
                   }}
                   className="font-sans mt-2 text-[10px] text-neutral-500 hover:text-white underline underline-offset-4 transition-colors"
                 >
