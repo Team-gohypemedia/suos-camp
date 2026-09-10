@@ -23,7 +23,7 @@ export default function RootLayout({
       lang="en"
       className={`${akzidenzGrotesk.variable} ${georgia.variable} ${holiday.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#121212] text-white selection:bg-white selection:text-black">
+      <body className="min-h-full flex flex-col font-sans bg-black text-white selection:bg-white selection:text-black">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
