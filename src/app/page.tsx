@@ -89,7 +89,7 @@ export default function Home() {
             </h1>
             
             <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.14em] uppercase text-neutral-400 font-normal mb-8">
-              BE FIRST IN LINE - WE&apos;LL NOTIFY YOU THE MOMENT WE LAUNCH
+              BE THE FIRST ONE IN LINE - WE&apos;LL NOTIFY YOU THE MOMENT WE LAUNCH
             </p>
 
             {status === "success" ? (

@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
   title: "SUOS - Join the Waitlist",
-  description: "Be first in line - we'll notify you the moment we launch.",
+  description: "Be the first one in line - we'll notify you the moment we launch.",
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
