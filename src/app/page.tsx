@@ -39,18 +39,6 @@ export default function Home() {
   return (
     <main className="w-full min-h-screen md:h-screen bg-black flex flex-col md:grid md:grid-cols-2 overflow-x-hidden md:overflow-hidden select-none">
       
-      {/* Mobile Brand Logo (Rendered above image on mobile) */}
-      <div className="md:hidden flex items-center justify-center py-5 px-6 bg-black border-b border-neutral-900/60 shrink-0 z-10">
-        <Image
-          src="/logo.svg"
-          alt="SUOS Logo"
-          width={96}
-          height={44}
-          priority
-          className="h-7 w-auto invert object-contain"
-        />
-      </div>
-
       {/* Left Column (Desktop) / Top Section (Mobile): Visual Artwork */}
       <div className="relative w-full h-[40vh] sm:h-[46vh] md:h-full min-h-[260px] md:min-h-0 bg-black overflow-hidden shrink-0">
         <Image
@@ -67,22 +55,23 @@ export default function Home() {
       </div>
 
       {/* Right Column (Desktop) / Bottom Section (Mobile): Waitlist Content & Form */}
-      <div className="relative flex-1 flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-16 xl:p-20 bg-black text-white md:h-full md:overflow-y-auto">
+      <div className="relative flex-1 flex flex-col justify-center items-center p-6 sm:p-10 md:p-12 lg:p-16 xl:p-20 bg-black text-white md:h-full md:overflow-y-auto">
         
-        {/* Desktop Brand Logo */}
-        <div className="hidden md:flex items-center">
-          <Image
-            src="/logo.svg"
-            alt="SUOS Logo"
-            width={110}
-            height={50}
-            priority
-            className="h-8 lg:h-9 w-auto invert object-contain"
-          />
-        </div>
-
         {/* Form & Copy Area */}
         <div className="my-auto py-6 sm:py-8 md:py-10 flex flex-col items-center text-center max-w-[380px] mx-auto w-full">
+          
+          {/* Brand Logo - perfectly centre aligned to the texts */}
+          <div className="flex items-center justify-center mb-6 sm:mb-8">
+            <Image
+              src="/logo.svg"
+              alt="SUOS Logo"
+              width={120}
+              height={55}
+              priority
+              className="h-8 sm:h-9 lg:h-10 w-auto invert object-contain"
+            />
+          </div>
+
           <h1 className="font-sans text-base sm:text-lg lg:text-xl font-normal tracking-[0.22em] uppercase text-white mb-2">
             JOIN THE WAITLIST
           </h1>
@@ -158,9 +147,6 @@ export default function Home() {
             No spam. Unsubscribe any time.
           </p>
         </div>
-
-        {/* Bottom spacer / aesthetic balance */}
-        <div className="hidden md:block h-8" />
       </div>
     </main>
   );
