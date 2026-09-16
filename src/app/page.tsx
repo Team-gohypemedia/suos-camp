@@ -14,22 +14,25 @@ export default function Home() {
 
   return (
     <main className="w-full min-h-screen bg-black text-white p-0 m-0 select-none overflow-x-hidden flex flex-col justify-start">
-      {/* Desktop / Large Screen: Full width edge-to-edge with natural uncropped aspect ratio */}
-      <div className="hidden md:block relative w-full aspect-[1905/1065] group bg-black overflow-hidden">
+      
+      {/* 
+        1. Landscape / Widescreen Display (Lossless Ultra-HD)
+      */}
+      <div className="widescreen-only relative w-full aspect-[1905/1065] group bg-black overflow-hidden">
         <Image
-          src="/images/originals-lookbook.webp"
+          src="/images/originals-lookbook-hd.png"
           alt="SUOS EDIT 01 - ORIGINALS Campaign"
           fill
           priority
-          sizes="100vw"
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.005]"
+          unoptimized
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.003]"
         />
 
-        {/* Subtle fullscreen button */}
+        {/* Fullscreen button on desktop */}
         <button
           onClick={() =>
             setSelectedImage({
-              src: "/images/originals-lookbook.webp",
+              src: "/images/originals-lookbook-hd.png",
               alt: "SUOS ORIGINALS - EDIT 01 Campaign Lookbook",
               title: "SUOS ORIGINALS",
               caption: "EDIT 01 • STRAIGHT FIT DENIM • 100% COTTON • NON STRETCH",
@@ -43,27 +46,29 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Mobile Screen: Zero Gap, Full Bleed Responsive Editorial Flow */}
-      <div className="md:hidden flex flex-col w-full bg-black">
-        {/* Main Hero Look with Typography */}
+      {/* 
+        2. Portrait / Tall Screens / Mobile & Tablet Flow (Lossless Ultra-HD)
+      */}
+      <div className="portrait-only flex-col w-full bg-black">
+        {/* Main Hero Look with Branding */}
         <div className="relative w-full aspect-[1011/693] overflow-hidden">
           <Image
-            src="/images/panel-hero.jpg"
+            src="/images/panel-hero.png"
             alt="SUOS ORIGINALS - EDIT 01"
             fill
             priority
-            sizes="100vw"
+            unoptimized
             className="object-cover object-center"
           />
         </div>
 
-        {/* 2-Column Vertical Editorial Grid */}
+        {/* 2-Column Responsive Editorial Gallery */}
         <div className="grid grid-cols-2 gap-0 w-full bg-black">
           <div
-            className="relative aspect-[382/693] overflow-hidden cursor-pointer"
+            className="relative aspect-[382/693] overflow-hidden cursor-pointer group"
             onClick={() =>
               setSelectedImage({
-                src: "/images/panel-portrait.jpg",
+                src: "/images/panel-portrait.png",
                 alt: "SUOS Portrait",
                 title: "EDIT 01 - PORTRAIT",
                 caption: "100% Cotton Straight Fit",
@@ -71,19 +76,19 @@ export default function Home() {
             }
           >
             <Image
-              src="/images/panel-portrait.jpg"
+              src="/images/panel-portrait.png"
               alt="SUOS Portrait Look"
               fill
-              sizes="50vw"
-              className="object-cover"
+              unoptimized
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
 
           <div
-            className="relative aspect-[382/693] overflow-hidden cursor-pointer"
+            className="relative aspect-[382/693] overflow-hidden cursor-pointer group"
             onClick={() =>
               setSelectedImage({
-                src: "/images/panel-hallway.jpg",
+                src: "/images/panel-hallway.png",
                 alt: "SUOS Corridor Walking Look",
                 title: "EDIT 01 - HALLWAY",
                 caption: "Classic Denim & Black Tee",
@@ -91,19 +96,19 @@ export default function Home() {
             }
           >
             <Image
-              src="/images/panel-hallway.jpg"
+              src="/images/panel-hallway.png"
               alt="SUOS Hallway Look"
               fill
-              sizes="50vw"
-              className="object-cover"
+              unoptimized
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
 
           <div
-            className="relative aspect-[535/372] overflow-hidden cursor-pointer"
+            className="relative aspect-[535/372] overflow-hidden cursor-pointer group"
             onClick={() =>
               setSelectedImage({
-                src: "/images/panel-mural.jpg",
+                src: "/images/panel-mural.png",
                 alt: "SUOS Street Look",
                 title: "EDIT 01 - STREET",
                 caption: "Raw Heritage Denim",
@@ -111,19 +116,19 @@ export default function Home() {
             }
           >
             <Image
-              src="/images/panel-mural.jpg"
+              src="/images/panel-mural.png"
               alt="SUOS Street Look"
               fill
-              sizes="50vw"
-              className="object-cover"
+              unoptimized
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
 
           <div
-            className="relative aspect-[486/372] overflow-hidden cursor-pointer"
+            className="relative aspect-[486/372] overflow-hidden cursor-pointer group"
             onClick={() =>
               setSelectedImage({
-                src: "/images/panel-newspaper.jpg",
+                src: "/images/panel-newspaper.png",
                 alt: "SUOS Cafe Look",
                 title: "EDIT 01 - CAFE",
                 caption: "Timeless Tailoring",
@@ -131,19 +136,19 @@ export default function Home() {
             }
           >
             <Image
-              src="/images/panel-newspaper.jpg"
+              src="/images/panel-newspaper.png"
               alt="SUOS Cafe Look"
               fill
-              sizes="50vw"
-              className="object-cover"
+              unoptimized
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
 
           <div
-            className="relative aspect-[424/372] overflow-hidden cursor-pointer"
+            className="relative aspect-[424/372] overflow-hidden cursor-pointer group"
             onClick={() =>
               setSelectedImage({
-                src: "/images/panel-balcony.jpg",
+                src: "/images/panel-balcony.png",
                 alt: "SUOS Balcony Look",
                 title: "EDIT 01 - BALCONY",
                 caption: "Authentic Silhouette",
@@ -151,19 +156,19 @@ export default function Home() {
             }
           >
             <Image
-              src="/images/panel-balcony.jpg"
+              src="/images/panel-balcony.png"
               alt="SUOS Balcony Look"
               fill
-              sizes="50vw"
-              className="object-cover"
+              unoptimized
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
 
           <div
-            className="relative aspect-[460/372] overflow-hidden cursor-pointer"
+            className="relative aspect-[460/372] overflow-hidden cursor-pointer group"
             onClick={() =>
               setSelectedImage({
-                src: "/images/panel-staircase.jpg",
+                src: "/images/panel-staircase.png",
                 alt: "SUOS Architecture",
                 title: "EDIT 01 - ATMOSPHERE",
                 caption: "Vintage Architecture",
@@ -171,11 +176,11 @@ export default function Home() {
             }
           >
             <Image
-              src="/images/panel-staircase.jpg"
+              src="/images/panel-staircase.png"
               alt="SUOS Architecture"
               fill
-              sizes="50vw"
-              className="object-cover"
+              unoptimized
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         </div>
@@ -204,7 +209,7 @@ export default function Home() {
                 src={selectedImage.src}
                 alt={selectedImage.alt}
                 fill
-                sizes="100vw"
+                unoptimized
                 className="object-contain"
               />
             </div>
