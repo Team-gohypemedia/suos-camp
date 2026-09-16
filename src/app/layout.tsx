@@ -4,8 +4,8 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
-  title: "SUOS - Join the Waitlist",
-  description: "Be the first one in line - we'll notify you the moment we launch.",
+  title: "SUOS — ORIGINALS (EDIT 01)",
+  description: "SUOS ORIGINALS EDIT 01 • Straight Fit Denim • 100% Cotton Non Stretch",
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
@@ -23,7 +23,7 @@ export default function RootLayout({
       lang="en"
       className={`${akzidenzGrotesk.variable} ${georgia.variable} ${holiday.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-black text-white selection:bg-white selection:text-black">
+      <body className="min-h-full m-0 p-0 flex flex-col font-sans bg-black text-white selection:bg-white selection:text-black overflow-x-hidden">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

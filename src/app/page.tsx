@@ -2,10 +2,246 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { X, ZoomIn } from "lucide-react";
+
+export default function Home() {
+  const [selectedImage, setSelectedImage] = React.useState<{
+    src: string;
+    alt: string;
+    title?: string;
+    caption?: string;
+  } | null>(null);
+
+  return (
+    <main className="w-full min-h-screen bg-black text-white p-0 m-0 select-none overflow-x-hidden flex flex-col justify-start">
+      {/* Desktop / Large Screen: Full width edge-to-edge with natural uncropped aspect ratio */}
+      <div className="hidden md:block relative w-full aspect-[1905/1065] group bg-black overflow-hidden">
+        <Image
+          src="/images/originals-lookbook.webp"
+          alt="SUOS EDIT 01 - ORIGINALS Campaign"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.005]"
+        />
+
+        {/* Subtle fullscreen button */}
+        <button
+          onClick={() =>
+            setSelectedImage({
+              src: "/images/originals-lookbook.webp",
+              alt: "SUOS ORIGINALS - EDIT 01 Campaign Lookbook",
+              title: "SUOS ORIGINALS",
+              caption: "EDIT 01 • STRAIGHT FIT DENIM • 100% COTTON • NON STRETCH",
+            })
+          }
+          className="absolute bottom-6 right-6 z-20 flex items-center gap-2 bg-black/60 hover:bg-black/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 text-neutral-300 hover:text-white text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer shadow-lg"
+          aria-label="View Fullscreen"
+        >
+          <ZoomIn className="size-3.5" />
+          <span>Fullscreen</span>
+        </button>
+      </div>
+
+      {/* Mobile Screen: Zero Gap, Full Bleed Responsive Editorial Flow */}
+      <div className="md:hidden flex flex-col w-full bg-black">
+        {/* Main Hero Look with Typography */}
+        <div className="relative w-full aspect-[1011/693] overflow-hidden">
+          <Image
+            src="/images/panel-hero.jpg"
+            alt="SUOS ORIGINALS - EDIT 01"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+
+        {/* 2-Column Vertical Editorial Grid */}
+        <div className="grid grid-cols-2 gap-0 w-full bg-black">
+          <div
+            className="relative aspect-[382/693] overflow-hidden cursor-pointer"
+            onClick={() =>
+              setSelectedImage({
+                src: "/images/panel-portrait.jpg",
+                alt: "SUOS Portrait",
+                title: "EDIT 01 - PORTRAIT",
+                caption: "100% Cotton Straight Fit",
+              })
+            }
+          >
+            <Image
+              src="/images/panel-portrait.jpg"
+              alt="SUOS Portrait Look"
+              fill
+              sizes="50vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div
+            className="relative aspect-[382/693] overflow-hidden cursor-pointer"
+            onClick={() =>
+              setSelectedImage({
+                src: "/images/panel-hallway.jpg",
+                alt: "SUOS Corridor Walking Look",
+                title: "EDIT 01 - HALLWAY",
+                caption: "Classic Denim & Black Tee",
+              })
+            }
+          >
+            <Image
+              src="/images/panel-hallway.jpg"
+              alt="SUOS Hallway Look"
+              fill
+              sizes="50vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div
+            className="relative aspect-[535/372] overflow-hidden cursor-pointer"
+            onClick={() =>
+              setSelectedImage({
+                src: "/images/panel-mural.jpg",
+                alt: "SUOS Street Look",
+                title: "EDIT 01 - STREET",
+                caption: "Raw Heritage Denim",
+              })
+            }
+          >
+            <Image
+              src="/images/panel-mural.jpg"
+              alt="SUOS Street Look"
+              fill
+              sizes="50vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div
+            className="relative aspect-[486/372] overflow-hidden cursor-pointer"
+            onClick={() =>
+              setSelectedImage({
+                src: "/images/panel-newspaper.jpg",
+                alt: "SUOS Cafe Look",
+                title: "EDIT 01 - CAFE",
+                caption: "Timeless Tailoring",
+              })
+            }
+          >
+            <Image
+              src="/images/panel-newspaper.jpg"
+              alt="SUOS Cafe Look"
+              fill
+              sizes="50vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div
+            className="relative aspect-[424/372] overflow-hidden cursor-pointer"
+            onClick={() =>
+              setSelectedImage({
+                src: "/images/panel-balcony.jpg",
+                alt: "SUOS Balcony Look",
+                title: "EDIT 01 - BALCONY",
+                caption: "Authentic Silhouette",
+              })
+            }
+          >
+            <Image
+              src="/images/panel-balcony.jpg"
+              alt="SUOS Balcony Look"
+              fill
+              sizes="50vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div
+            className="relative aspect-[460/372] overflow-hidden cursor-pointer"
+            onClick={() =>
+              setSelectedImage({
+                src: "/images/panel-staircase.jpg",
+                alt: "SUOS Architecture",
+                title: "EDIT 01 - ATMOSPHERE",
+                caption: "Vintage Architecture",
+              })
+            }
+          >
+            <Image
+              src="/images/panel-staircase.jpg"
+              alt="SUOS Architecture"
+              fill
+              sizes="50vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Lightbox / Fullscreen Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 md:p-8 animate-in fade-in duration-200"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+            aria-label="Close"
+          >
+            <X className="size-6" />
+          </button>
+
+          <div
+            className="relative max-w-7xl max-h-[85vh] w-full h-full flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full h-[75vh]">
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                fill
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
+            {(selectedImage.title || selectedImage.caption) && (
+              <div className="mt-4 text-center">
+                {selectedImage.title && (
+                  <h2 className="text-sm font-sans tracking-[0.2em] uppercase text-white font-medium">
+                    {selectedImage.title}
+                  </h2>
+                )}
+                {selectedImage.caption && (
+                  <p className="text-xs text-neutral-400 font-light mt-1 tracking-wider uppercase">
+                    {selectedImage.caption}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
+
+/*
+=============================================================================
+PREVIOUS HOMEPAGE IMPLEMENTATION (SAVED FOR LATER USE)
+=============================================================================
+
+"use client";
+
+import * as React from "react";
+import Image from "next/image";
 import { Check, Loader2 } from "lucide-react";
 import { joinWaitlist } from "@/app/actions/waitlist";
 
-export default function Home() {
+export function PreviousHome() {
   const [email, setEmail] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "loading" | "success">("idle");
   const [alreadyJoined, setAlreadyJoined] = React.useState(false);
@@ -39,7 +275,7 @@ export default function Home() {
   return (
     <main className="w-full min-h-screen md:h-screen bg-black flex flex-col md:grid md:grid-cols-2 overflow-x-hidden md:overflow-hidden select-none">
       
-      {/* Left Column (Desktop) / Top Section (Mobile): Visual Artwork */}
+      {/!* Left Column (Desktop) / Top Section (Mobile): Visual Artwork *!/}
       <div className="relative w-full h-[40vh] sm:h-[46vh] md:h-full min-h-[260px] md:min-h-0 bg-black overflow-hidden shrink-0">
         <Image
           src="/images/suos-portal.jpg"
@@ -49,18 +285,18 @@ export default function Home() {
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover object-center"
         />
-        {/* Soft edge blend overlay: horizontal on desktop, vertical on mobile */}
+        {/!* Soft edge blend overlay: horizontal on desktop, vertical on mobile *!/}
         <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/50 pointer-events-none" />
         <div className="md:hidden absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none" />
       </div>
 
-      {/* Right Column (Desktop) / Bottom Section (Mobile): Waitlist Content & Form */}
+      {/!* Right Column (Desktop) / Bottom Section (Mobile): Waitlist Content & Form *!/}
       <div className="relative flex-1 flex flex-col justify-center items-center p-6 sm:p-10 md:p-12 lg:p-16 xl:p-20 bg-black text-white md:h-full md:overflow-y-auto">
         
-        {/* Form & Copy Area */}
+        {/!* Form & Copy Area *!/}
         <div className="my-auto py-6 sm:py-8 md:py-10 flex flex-col items-center text-center max-w-[380px] mx-auto w-full">
           
-          {/* Brand Logo - perfectly centre aligned to the texts */}
+          {/!* Brand Logo - perfectly centre aligned to the texts *!/}
           <div className="flex items-center justify-center mb-6 sm:mb-8">
             <Image
               src="/logo.svg"
@@ -151,3 +387,4 @@ export default function Home() {
     </main>
   );
 }
+*/
