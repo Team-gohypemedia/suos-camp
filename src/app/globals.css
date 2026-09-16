@@ -75,35 +75,7 @@
   * {
     @apply border-border;
   }
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-  }
   body {
     @apply bg-background text-foreground;
-  }
-  img {
-    image-rendering: -webkit-optimize-contrast;
-  }
-}
-
-/* Widescreen landscape vs Portrait/Tall screen layout rules */
-@media (min-aspect-ratio: 13/10) and (min-width: 768px) {
-  .widescreen-only {
-    display: block !important;
-  }
-  .portrait-only {
-    display: none !important;
-  }
-}
-
-@media (max-aspect-ratio: 13/10), (max-width: 767px) {
-  .widescreen-only {
-    display: none !important;
-  }
-  .portrait-only {
-    display: flex !important;
   }
 }
